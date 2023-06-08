@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WaterNow</string>
+    <string name="textUserName">Nome: %s</string>
+    <string name="textUserEmail">Email: %s</string>
+    <string name="mensagem_logout">Tem certeza que deseja sair?</string>
+    <string name="main_oi">Bem Vindo</string>
+    <string name="sobrenos">About us</string>
+    <string name="sobre">Nós estudantes da UFU desenvolvemos um app de agua, a fim de mostrar uma perspectiva fresca e criativa, procurando atender as necessidades e preferências dos usuarios.</string>
+    <string name="textUserAltura">Altura: %.2f</string>
+    <string name="textUserPeso">Peso: %.2f</string>
+    <string name="textUserSexo">Sexo: %s</string>
+
+    <string name="channel_id">meu_channel_id</string>
+    <string name="channel_name">Nome do Canal</string>
+    <string name="channel_description">Descrição do Canal</string>
+</resources>
