@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +34,15 @@ public class CriarConta extends AppCompatActivity {
 
                         MainActivity.redirectActivity(this, CriarContaParte2.class);
                     } else {
-                        Log.i("registro", "erro no registro --" + task.getException());
-                        Toast.makeText(CriarConta.this, "Erro na criação de conta.",
+                        String msgErro = task.getException().getMessage();
+                        if (msgErro.contains("6"))
+                            ((TextView) findViewById(R.id.textErro)).setText(getString(R.string.erro_senha));
+                        else if (msgErro.contains("email"))
+                            ((TextView) findViewById(R.id.textErro)).setText(getString(R.string.erro_email));
+                        else
+                            ((TextView) findViewById(R.id.textErro)).setText(getString(R.string.erro_outro));
+
+                        Toast.makeText(CriarConta.this, "Erro na criação da conta.",
                                 Toast.LENGTH_SHORT).show();
 
                         // mostrar mensagem de erro

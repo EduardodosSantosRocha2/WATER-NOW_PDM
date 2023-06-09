@@ -3,36 +3,34 @@ package app.example.waternow;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.InputStream;
-import java.net.URL;
-
-import android.content.Intent;
-
-import app.example.waternow.R;
 import app.example.waternow.objeto.Usuario;
 
 public class Conta extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
+    FirebaseFirestore db;
+    private Usuario usuarioLocal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conta);
         drawerLayout = findViewById(R.id.conta1);
+        db = FirebaseFirestore.getInstance();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -40,37 +38,75 @@ public class Conta extends AppCompatActivity {
         } else {
             Uri photoURL = user.getPhotoUrl();
             if (photoURL != null)
-                ((ImageView) findViewById(R.id.imgUserFoto)).setImageDrawable(carregarFotoUsuario(user.getPhotoUrl().toString()));
+                Glide.with(this).load(photoURL).into((ImageView) findViewById(R.id.imgUserFoto));
 
-            ((TextView) findViewById(R.id.textUserName)).setText(getString(R.string.textUserName, user.getDisplayName()));
+            String nome = user.getDisplayName();
+            ((TextView) findViewById(R.id.textUserName)).setText(getString(R.string.textUserName, nome == null ? "" : nome));
             ((TextView) findViewById(R.id.textUserEmail)).setText(getString(R.string.textUserEmail, user.getEmail()));
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("pessoa").document(user.getUid()).get().addOnCompleteListener((e) -> {
+            db.collection(Usuario.END_FIREBASE).document(user.getUid()).get().addOnCompleteListener((e) -> {
                 if (e.isSuccessful()) {
-                    Usuario u = e.getResult().toObject(Usuario.class);
-                    ((TextView) findViewById(R.id.textUserAltura)).setText(getString(R.string.textUserAltura, u.altura));
-                    ((TextView) findViewById(R.id.textUserPeso)).setText(getString(R.string.textUserPeso, u.peso));
-                    ((TextView) findViewById(R.id.textUserSexo)).setText(getString(R.string.textUserSexo, u.sexo));
+                    usuarioLocal = e.getResult().toObject(Usuario.class);
+                    PreencherView();
                 }
             });
         }
+
+        ((Button) findViewById(R.id.btnEdit)).setOnClickListener((f) -> {
+            PreencherEdit();
+            TrocarCampos();
+        });
+
+        ((Button) findViewById(R.id.btnEditCCL)).setOnClickListener((f) -> {
+            TrocarCampos();
+        });
+
+        ((Button) findViewById(R.id.btnEditOK)).setOnClickListener((f) -> {
+            ConfirmarEdit();
+            TrocarCampos();
+            PreencherView();
+        });
     }
 
-    private static Drawable carregarFotoUsuario(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "photo");
-            return d;
-        } catch (Exception e) {
-            Log.e("erro foto", e.getMessage());
-            return null;
+    private void PreencherView() {
+        ((TextView) findViewById(R.id.textUserAltura)).setText(getString(R.string.textUserAltura, usuarioLocal.altura));
+        ((TextView) findViewById(R.id.textUserPeso)).setText(getString(R.string.textUserPeso, usuarioLocal.peso));
+        ((TextView) findViewById(R.id.textUserSexo)).setText(getString(R.string.textUserSexo, usuarioLocal.sexo));
+    }
+
+    private void TrocarCampos() {
+        if (findViewById(R.id.editaInfo).getVisibility() == View.VISIBLE) {
+            findViewById(R.id.mostraInfo).setVisibility(View.VISIBLE);
+            findViewById(R.id.editaInfo).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.mostraInfo).setVisibility(View.GONE);
+            findViewById(R.id.editaInfo).setVisibility(View.VISIBLE);
         }
     }
 
-    public void Registrar(View view) {
-        Intent intent = new Intent(this, CriarContaParte2.class);
-        startActivity(intent);
+    private void PreencherEdit() {
+        ((EditText) findViewById(R.id.edtPeso)).setText(Float.toString(usuarioLocal.peso));
+        ((EditText) findViewById(R.id.edtAltura)).setText(Float.toString(usuarioLocal.altura));
+        if (usuarioLocal.getSexo().contains("feminino"))
+            ((RadioButton) findViewById(R.id.rdFeminino)).setChecked(true);
+        else
+            ((RadioButton) findViewById(R.id.rdMasculino)).setChecked(true);
     }
+
+    private void ConfirmarEdit() {
+        Float novoPeso = Float.parseFloat(((EditText) findViewById(R.id.edtPeso)).getText().toString());
+        Float novaAltura = Float.parseFloat(((EditText) findViewById(R.id.edtAltura)).getText().toString());
+        String novoSexo = ((RadioButton) findViewById(R.id.rdFeminino)).isChecked() ? "feminino" : "masculino";
+        usuarioLocal.setPeso(novoPeso);
+        usuarioLocal.setAltura(novaAltura);
+        usuarioLocal.setSexo(novoSexo);
+        db.collection(Usuario.END_FIREBASE).document(usuarioLocal.getId()).set(usuarioLocal);
+    }
+
+//
+//    public void Registrar(View view) {
+//        Intent intent = new Intent(this, CriarContaParte2.class);
+//        startActivity(intent);
+//    }
 
     public void ClickMenu(View view) {
         MainActivity.openDrawer(drawerLayout);

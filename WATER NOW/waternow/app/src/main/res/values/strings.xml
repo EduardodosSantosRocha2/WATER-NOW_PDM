@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WaterNow</string>
     <string name="textUserName">Nome: %s</string>
-    <string name="textUserEmail">Email: %s</string>
+    <string name="textUserEmail">%s</string>
     <string name="mensagem_logout">Tem certeza que deseja sair?</string>
     <string name="main_oi">Bem Vindo</string>
     <string name="sobrenos">About us</string>
@@ -13,4 +13,8 @@
     <string name="channel_id">meu_channel_id</string>
     <string name="channel_name">Nome do Canal</string>
     <string name="channel_description">Descrição do Canal</string>
+
+    <string name="erro_senha"><b>A senha deve ter pelo menos 6 caracteres.</b></string>
+    <string name="erro_email"><b>Format de Email inválido.</b></string>
+    <string name="erro_outro"><b>Ocorreu um erro durante a criação da conta.</b></string>
 </resources>
