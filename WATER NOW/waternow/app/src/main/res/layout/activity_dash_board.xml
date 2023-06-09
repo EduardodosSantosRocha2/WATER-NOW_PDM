@@ -5,8 +5,9 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/fundo"
     tools:context="app.example.waternow.DashBoard">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,9 @@
 
         <include layout="@layout/main_toolbar" />
 
+
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -32,18 +35,37 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/layoutListaAgua2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/listView01"
+                    android:layout_width="333dp"
+                    android:layout_height="100dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layoutListaAgua"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+            </LinearLayout>
+
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/textAddAgua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adicionar Agua"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:text="Adicionar Agua: "
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -52,7 +74,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+
                 <EditText
+                    android:layout_margin="30dp"
+                    android:textColor="@color/black"
                     android:id="@+id/editQtdAgua"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,27 +86,35 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
+                    android:textColor="@color/black"
                     android:id="@+id/textUnidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ml"
+                    android:text=" ml"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </LinearLayout>
 
             <Button
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"
                 android:id="@+id/btnAddAgua"
+                android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Gravar" />
 
             <Button
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"
                 android:id="@+id/redirecionar"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="redirecionar"
-                android:text="Cadastrar" />
+                android:text="Cadastrar"
+                android:layout_gravity="center"
+                />
         </LinearLayout>
 
     </LinearLayout>
@@ -94,6 +127,7 @@
 
         <include layout="@layout/main_navigation_drawer" />
     </RelativeLayout>
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/cadastro2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/fundo"
     tools:context="app.example.waternow.CriarContaParte2">
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +19,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/Nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:hint="Nome..." />
 
         <EditText
             android:id="@+id/Peso"

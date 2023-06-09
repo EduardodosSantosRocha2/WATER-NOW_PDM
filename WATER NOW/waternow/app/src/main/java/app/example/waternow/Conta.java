@@ -41,7 +41,7 @@ public class Conta extends AppCompatActivity {
                 Glide.with(this).load(photoURL).into((ImageView) findViewById(R.id.imgUserFoto));
 
             String nome = user.getDisplayName();
-            ((TextView) findViewById(R.id.textUserName)).setText(getString(R.string.textUserName, nome == null ? "" : nome));
+            //((TextView) findViewById(R.id.textUserName)).setText(getString(R.string.textUserName, nome == null ? "" : nome));
             ((TextView) findViewById(R.id.textUserEmail)).setText(getString(R.string.textUserEmail, user.getEmail()));
             db.collection(Usuario.END_FIREBASE).document(user.getUid()).get().addOnCompleteListener((e) -> {
                 if (e.isSuccessful()) {
@@ -68,6 +68,7 @@ public class Conta extends AppCompatActivity {
     }
 
     private void PreencherView() {
+        ((TextView) findViewById(R.id.textUserNOME)).setText(getString(R.string.textUserNAMEUsuario, usuarioLocal.nome));
         ((TextView) findViewById(R.id.textUserAltura)).setText(getString(R.string.textUserAltura, usuarioLocal.altura));
         ((TextView) findViewById(R.id.textUserPeso)).setText(getString(R.string.textUserPeso, usuarioLocal.peso));
         ((TextView) findViewById(R.id.textUserSexo)).setText(getString(R.string.textUserSexo, usuarioLocal.sexo));

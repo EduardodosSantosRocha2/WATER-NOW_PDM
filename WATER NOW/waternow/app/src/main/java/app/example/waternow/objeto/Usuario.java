@@ -11,6 +11,7 @@ public class Usuario {
     public float altura;
     public String sexo;
     public String id;
+    public String nome;
 
     public Usuario() { }
 
@@ -31,12 +32,13 @@ public class Usuario {
         this.id = id;
     }
 
-    public Usuario(float peso, float altura, String sexo, String id) {
+    public Usuario(float peso, float altura, String sexo, String id,String nome) {
         super();
         this.peso = peso;
         this.altura = altura;
         this.sexo = sexo;
         this.id = id;
+        this.nome = nome;
     }
 
     public float getPeso() {
@@ -61,5 +63,9 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

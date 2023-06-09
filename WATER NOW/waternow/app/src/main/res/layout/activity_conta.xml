@@ -5,7 +5,7 @@
     android:id="@+id/conta1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/fundo"
     tools:context="app.example.waternow.Conta">
 
     <LinearLayout
@@ -37,6 +37,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/textUserNOME"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
 
             <TextView
                 android:id="@+id/textUserName"

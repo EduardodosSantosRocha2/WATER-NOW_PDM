@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import app.example.waternow.objeto.Usuario;
 
 public class CriarContaParte2 extends AppCompatActivity {
+    private EditText enome;
     private String sexo;
     private EditText epeso;
     private EditText ealtura;
@@ -45,6 +46,7 @@ public class CriarContaParte2 extends AppCompatActivity {
         }
     }
     public void getViews(){
+        enome = (EditText) findViewById(R.id.Nome);
         epeso = (EditText) findViewById(R.id.Peso);
         ealtura = (EditText) findViewById(R.id.Altura);
         button = (Button) findViewById(R.id.button);
@@ -56,13 +58,14 @@ public class CriarContaParte2 extends AppCompatActivity {
         getViews();
         String peso = epeso.getText().toString();
         String altura = ealtura.getText().toString();
+        String nome = enome.getText().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String id = auth.getCurrentUser().getUid();
 
-        Usuario u = new Usuario(Float.parseFloat(peso),Float.parseFloat(altura),sexo,id);
+        Usuario u = new Usuario(Float.parseFloat(peso),Float.parseFloat(altura),sexo,id,nome);
         db.collection("pessoa")
                 .document(id)
                 .set(u);

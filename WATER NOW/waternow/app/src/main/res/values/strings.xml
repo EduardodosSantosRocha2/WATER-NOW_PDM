@@ -17,4 +17,5 @@
     <string name="erro_senha"><b>A senha deve ter pelo menos 6 caracteres.</b></string>
     <string name="erro_email"><b>Format de Email inválido.</b></string>
     <string name="erro_outro"><b>Ocorreu um erro durante a criação da conta.</b></string>
+    <string name="textUserNAMEUsuario">Nome: %s</string>
 </resources>

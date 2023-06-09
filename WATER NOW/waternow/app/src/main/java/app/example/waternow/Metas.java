@@ -134,7 +134,7 @@ public class Metas extends AppCompatActivity {
             String dataFormatadaUser = formatoData.format(a.getData());
             if(dataFormatadaSistema.equals(dataFormatadaUser)){
                 somaQuantidade += a.getQuantidade();
-                dataText.setText("dataUser:"+dataFormatadaUser+"\ndataSistema"+dataFormatadaSistema+"\niguais:");
+                dataText.setText(dataFormatadaUser);
             }
 
             //dataText.setText(dataFormatada);

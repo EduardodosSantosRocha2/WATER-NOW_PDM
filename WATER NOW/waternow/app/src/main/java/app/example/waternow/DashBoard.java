@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.google.type.DateTime;
 
 import java.text.DateFormat;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +37,8 @@ import app.example.waternow.objeto.Usuario;
 
 public class DashBoard extends AppCompatActivity {
 
+    private AguaAdapter aguaAdapter;
+    public ArrayList<AguaList> listaAgua = new ArrayList<>();
     DrawerLayout drawerLayout;
     private Usuario usuarioAtual;
     private FirebaseFirestore db;
@@ -63,10 +67,21 @@ public class DashBoard extends AppCompatActivity {
     private void PreencherLista() {
         ((LinearLayout) findViewById(R.id.layoutListaAgua)).removeAllViews();
         for (Agua a: usuarioAtual.getAgua()) {
-            TextView teste = new TextView(this);
-            teste.setText(String.format("Agua: %s \t Qtd: %.2f \t Peso: %.2f ", df.format(a.getData()), a.getQuantidade(),usuarioAtual.getPeso()));
-            ((LinearLayout) findViewById(R.id.layoutListaAgua)).addView(teste);
+
+            String item1 = df.format(a.getData());
+            String item2 = Float.toString(a.getQuantidade());
+            String item3 = Float.toString(usuarioAtual.getPeso());
+            AguaList p1 = new AguaList(item1,item2,item3);
+            listaAgua.add(p1);
+//            TextView teste = new TextView(this);
+//            teste.setText(String.format("Agua: %s \t Qtd: %.2f \t Peso: %.2f ", df.format(a.getData()), a.getQuantidade(),usuarioAtual.getPeso()));
+//            ((LinearLayout) findViewById(R.id.layoutListaAgua)).addView(teste);
+
         }
+
+        ListView listView1 = findViewById(R.id.listView01);
+        aguaAdapter = new AguaAdapter(DashBoard.this,listaAgua);
+        listView1.setAdapter(aguaAdapter);
     }
 
     private void AdicionarAgua() {

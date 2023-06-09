@@ -5,24 +5,30 @@
     android:id="@+id/relatorio1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/fundo"
     tools:context="app.example.waternow.Relatorio">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+
 
         <include layout="@layout/main_toolbar" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/layoutListaAguaRelatorio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Relatorio"
-            android:textColor="@color/black"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -34,5 +40,7 @@
 
         <include layout="@layout/main_navigation_drawer" />
     </RelativeLayout>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

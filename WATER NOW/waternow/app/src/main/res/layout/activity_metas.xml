@@ -5,7 +5,7 @@
     android:id="@+id/metas1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/fundo"
     tools:context="app.example.waternow.Metas">
 
     <LinearLayout
@@ -27,7 +27,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_white"
+
             tools:context=".MainActivity">
 
 
@@ -46,6 +46,7 @@
                 <!-- and details of pie chart-->
 
                 <LinearLayout
+                    android:background="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -69,6 +70,7 @@
                     <!--Creating another linear layout -->
                     <!-- to display pie chart details -->
                     <LinearLayout
+                        android:background="@color/black"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -91,6 +93,7 @@
                                 android:background="@color/R" />
 
                             <TextView
+                                android:textColor="@color/Java"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingLeft="10dp"
@@ -113,6 +116,7 @@
 
                             <!--Text view to display python text -->
                             <TextView
+                                android:textColor="@color/Java"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:paddingLeft="10dp"
@@ -134,6 +138,7 @@
             <!-- Another Card view for displaying -->
             <!-- Use of programming languages -->
             <androidx.cardview.widget.CardView
+
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
                 android:layout_below="@+id/cardViewGraph"
@@ -148,6 +153,7 @@
                 <!--Relative layout to display -->
                 <!-- use of programming languages -->
                 <LinearLayout
+                    android:background="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -155,10 +161,10 @@
                     <!--Text view to use of -->
                     <!-- programming languages text-->
                     <TextView
+                        android:textColor="@color/Java"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Total de agua
-                        :"
+                        android:text="Total de agua:"
                         android:textSize="23sp"
                         android:textStyle="bold"
                         android:layout_marginLeft="25dp"
@@ -166,6 +172,7 @@
 
                     <!--View to display the line-->
                     <View
+
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/color_two"
@@ -183,6 +190,7 @@
 
                         <!--Text view to display R -->
                         <TextView
+                            android:textColor="@color/Java"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -193,13 +201,13 @@
                         <!-- percentage of programming language -->
                         <!-- used. For now default set to 0-->
                         <TextView
+                            android:textColor="@color/Java"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:id="@+id/C"
                             android:textAlignment="textEnd"
                             android:textSize="18sp"
-                            android:textColor="@color/color_one"
                             android:textStyle="bold"
                             android:fontFamily="sans-serif-light"
                             android:layout_alignParentRight="true"/>
@@ -222,6 +230,7 @@
                         android:layout_marginBottom="10dp">
 
                         <TextView
+                            android:textColor="@color/Java"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
@@ -239,7 +248,7 @@
                             android:id="@+id/NC"
                             android:textAlignment="textEnd"
                             android:textSize="18sp"
-                            android:textColor="@color/color_one"
+                            android:textColor="@color/Java"
                             android:textStyle="bold"
                             android:fontFamily="sans-serif-light"
                             android:layout_alignParentRight="true"/>
